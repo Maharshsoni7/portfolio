@@ -5,6 +5,8 @@ const Images = {
     Ink: require('../assets/Images/InkDoc.png'),
     dms: require('../assets/Images/Dms.png'),
     p5: require('../assets/Images/P5.png'),
+    vector: require('../assets/Images/Vector.png'),
+
 };
 
 export default Images;

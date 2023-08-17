@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, FlatList, ImageBackground } from 'react-native'
+import { View, Text, ScrollView, FlatList, ImageBackground, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import HomeController from './HomeController'
 import { IWorkList } from '../../utility/constant'
+import Images from '../../utility/images'
 
 const HomeScreen = () => {
-    const { LatestWorkList } = HomeController();
+    const { LatestWorkList, onPressApps } = HomeController();
 
     console.log("LatestWorkList---", LatestWorkList);
 
@@ -18,7 +19,20 @@ const HomeScreen = () => {
                     <Text style={styles.headerSubText}>I have done engineering degree in IT,and have 2 years of industry experience building Mobile applications.
                         I specialize in React-Native, and have experience working with javascript, redux, realm and Redux-toolkit.
                     </Text>
+
                 </View>
+
+            </View>
+        )
+    }
+    const _RenderVector = () => {
+        return (
+            <View style={{ alignItems: 'center', bottom: 15 }}>
+                <Image
+                    source={Images.vector}
+                    style={styles.vector}
+                    resizeMode='cover'
+                />
             </View>
         )
     }
@@ -40,12 +54,12 @@ const HomeScreen = () => {
         return (
             <View style={styles.workCard}>
                 <ImageBackground
-                    source={item.image} // Replace with actual image source
+                    source={item.image}
                     style={styles.backgroundImage}
                     imageStyle={styles.backgroundImageStyle}
                     resizeMode='cover'
                 >
-
+                    <Text style={styles.itemName}>{item.name}</Text>
                 </ImageBackground>
             </View>
         )
@@ -65,7 +79,9 @@ const HomeScreen = () => {
 
                     data={LatestWorkList}
                     renderItem={({ item }) => (
-                        <_renderWork item={item} />
+                        <TouchableOpacity onPress={() => { onPressApps(item) }}>
+                            <_renderWork item={item} />
+                        </TouchableOpacity>
                     )}
                     style={styles.flatList}
                     numColumns={2}
@@ -76,11 +92,10 @@ const HomeScreen = () => {
     }
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.container}>
-                <_RenderHeader />
-                <_RenderSubheader />
-                <_RenderLatestWork />
-            </View>
+            <_RenderHeader />
+            <_RenderVector />
+            <_RenderSubheader />
+            <_RenderLatestWork />
         </ScrollView>
     )
 }

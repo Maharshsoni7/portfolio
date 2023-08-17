@@ -4,7 +4,7 @@ import Fonts from '../../utility/fonts';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.mainBackground
+        backgroundColor: colors.black
     },
     header: {
         alignItems: 'center',
@@ -12,15 +12,14 @@ export default StyleSheet.create({
         paddingVertical: 20,
     },
     headerText: {
-        color: colors.HeadersText,
+        color: colors.white,
         fontSize: 50,
         fontFamily: Fonts.Dmsans_Medium
     },
     headerSubText: {
         textAlign: 'center',
-        // textAlignVertical: 'center',
         fontSize: 15,
-        color: colors.gray89,
+        color: colors.dmsGray,
         fontFamily: Fonts.Dmsans_Medium
     },
     HeaderSubTitle: {
@@ -33,7 +32,7 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
     subHederText: {
-        color: colors.HeadersText,
+        color: colors.white,
         fontSize: 40,
         fontFamily: Fonts.Dmsans_Medium
     },
@@ -45,35 +44,33 @@ export default StyleSheet.create({
         paddingVertical: 30,
         alignItems: 'center'
     },
-    workCard: {
-        // flex: 1,
-        width: 150,
-        height: 150, // Adjust the height as needed
-        borderRadius: 10,
-        overflow: 'hidden',
-        // backgroundColor: 'red',
-        margin: 15
+    vector: {
+        width: 700, // Set the desired width of the image
+        height: 500,
 
     },
+    workCard: {
+        borderRadius: 8,
+        overflow: 'hidden', // To ensure border radius is applied correctly
+        margin: 15,
+        backgroundColor: '#fff', // Set your desired background color
+    },
     backgroundImage: {
-        flex: 1,
-        paddingVertical: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // opacity: 0.2,
+        width: 170,
+        height: 170,
+        justifyContent: 'flex-end', // To position the text at the bottom
     },
     backgroundImageStyle: {
-        flex: 1,
-        // opacity: , // Adjust the opacity if needed
+        borderRadius: 8,
     },
-    content: {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)', // Adjust the background color and opacity
-        padding: 10,
-        borderRadius: 10,
-    },
-    text: {
-        fontSize: 16,
+    itemName: {
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        paddingBottom: 10,
+        fontSize: 18,
         fontWeight: 'bold',
+        color: colors.gray89, // Set your desired text color
+        backgroundColor: colors.backgroundColor // Semi-transparent background for the text
     },
     flatList: {
         margin: 10
