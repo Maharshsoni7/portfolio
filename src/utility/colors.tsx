@@ -55,8 +55,10 @@ const colors = {
     effectiveColorCode: '#2cbff2',
     effectiveLight: '#2cbff214',
     valueColor: '#2E2E2E',
-    flatListColor: '#FFF6E8'
-
+    flatListColor: '#FFF6E8',
+    mainBackground: '#F4F2ED',
+    HeadersText: '#0D1816',
+    portYellow: '#EC8E24'
 }
 
 export default colors;

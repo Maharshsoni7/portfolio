@@ -23,7 +23,7 @@ const AppNavigator = () => {
     // };
     const headerOptions: NativeStackNavigationOptions = {
         headerTitleAlign: 'left',
-        headerStyle: { backgroundColor: colors.dmsPrimary },
+        headerStyle: { backgroundColor: colors.black },
         headerTintColor: colors.white,
         headerBackVisible: false
     }
@@ -40,9 +40,9 @@ const AppNavigator = () => {
             <Tab.Navigator
                 screenOptions={{
                     tabBarStyle: {
-                        height: Platform.OS === 'ios' ? 90 : 70, // set the height of the tab bar based on platform
+                        // height: Platform.OS === 'ios' ? 90 : 70, // set the height of the tab bar based on platform
                         paddingTop: 10,
-                        paddingBottom: Platform.OS === 'ios' ? 30 : 10,
+                        // paddingBottom: Platform.OS === 'ios' ? 30 : 10,
                         shadowColor: "#000",
                         shadowOffset: {
                             width: 0,
@@ -50,6 +50,7 @@ const AppNavigator = () => {
                         },
                         shadowOpacity: 0.58,
                         shadowRadius: 16.00,
+                        backgroundColor: colors.black
                     }
                 }}
             >
@@ -60,9 +61,9 @@ const AppNavigator = () => {
                         tabBarShowLabel: true,
                         headerShown: false,
                         tabBarLabel: 'About',
-                        tabBarActiveTintColor: colors.dmsPrimary,
+                        tabBarActiveTintColor: colors.white,
                         tabBarIcon: ({ color, size, focused }) => (
-                            <Image source={Images.home} tintColor={!focused ? colors.gray89 : colors.dmsPrimary} />
+                            <Image source={Images.home} tintColor={!focused ? colors.gray89 : colors.white} />
                         ),
                     }}
                 />
@@ -73,9 +74,9 @@ const AppNavigator = () => {
                         tabBarShowLabel: true,
                         headerShown: false,
                         tabBarLabel: 'My skill',
-                        tabBarActiveTintColor: colors.dmsPrimary,
+                        tabBarActiveTintColor: colors.white,
                         tabBarIcon: ({ color, size, focused }) => (
-                            <Image source={Images.work} tintColor={!focused ? colors.gray89 : colors.dmsPrimary} />
+                            <Image source={Images.work} tintColor={!focused ? colors.gray89 : colors.white} />
                         ),
                     }}
                 />
