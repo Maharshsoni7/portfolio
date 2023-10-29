@@ -10,22 +10,18 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Images from '../utility/images';
+import Space from '../features/space';
 
 const AppNavigator = () => {
     // const navigationRef = createRef<NavigationContainerRef<RootParamList>>();
     const Tab = createBottomTabNavigator();
-
     const Stack = createNativeStackNavigator();
-
-    // type RootParamList = {
-    //     Home: undefined;
-    //     Work: undefined;
-    // };
     const headerOptions: NativeStackNavigationOptions = {
         headerTitleAlign: 'left',
         headerStyle: { backgroundColor: colors.black },
         headerTintColor: colors.white,
-        headerBackVisible: false
+        headerBackVisible: false,
+        headerShown: false,
     }
 
     const MainStack = () => {
@@ -58,6 +54,7 @@ const AppNavigator = () => {
                     name={NavigationScreens.homeTab}
                     component={HomeStack}
                     options={{
+
                         tabBarShowLabel: true,
                         headerShown: false,
                         tabBarLabel: 'About',
@@ -73,7 +70,7 @@ const AppNavigator = () => {
                     options={{
                         tabBarShowLabel: true,
                         headerShown: false,
-                        tabBarLabel: 'My skill',
+                        tabBarLabel: 'Skill',
                         tabBarActiveTintColor: colors.white,
                         tabBarIcon: ({ color, size, focused }) => (
                             <Image source={Images.work} tintColor={!focused ? colors.gray89 : colors.white} />
@@ -81,7 +78,19 @@ const AppNavigator = () => {
                     }}
                 />
 
-
+                <Tab.Screen
+                    name={NavigationScreens.spaceTab}
+                    component={SpaceStack}
+                    options={{
+                        tabBarShowLabel: true,
+                        headerShown: false,
+                        tabBarLabel: 'Space',
+                        tabBarActiveTintColor: colors.white,
+                        tabBarIcon: ({ color, size, focused }) => (
+                            <Image source={Images.space} tintColor={!focused ? colors.gray89 : colors.white} />
+                        ),
+                    }}
+                />
             </Tab.Navigator>
         )
     }
@@ -97,12 +106,25 @@ const AppNavigator = () => {
             </Stack.Navigator>
         )
     }
+
     const WorkStack = () => {
         return (
             <Stack.Navigator initialRouteName={NavigationScreens.work}>
                 <Stack.Screen
                     name={NavigationScreens.work}
                     component={Work}
+                    options={headerOptions}
+                />
+
+            </Stack.Navigator>
+        )
+    }
+    const SpaceStack = () => {
+        return (
+            <Stack.Navigator initialRouteName={NavigationScreens.space}>
+                <Stack.Screen
+                    name={NavigationScreens.space}
+                    component={Space}
                     options={headerOptions}
                 />
 

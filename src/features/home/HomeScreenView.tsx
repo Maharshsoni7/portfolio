@@ -2,14 +2,12 @@ import { View, Text, ScrollView, FlatList, ImageBackground, Image, TouchableOpac
 import React from 'react'
 import styles from './styles'
 import HomeController from './HomeController'
-import { IWorkList } from '../../utility/constant'
+import { IExperience, IWorkList } from '../../utility/constant'
 import Images from '../../utility/images'
-
+import colors from '../../utility/colors'
+import _RenderLatestWork from '../../components/commonWork'
 const HomeScreen = () => {
-    const { LatestWorkList, onPressApps } = HomeController();
-
-    console.log("LatestWorkList---", LatestWorkList);
-
+    const { LatestWorkList, onPressApps, ExperiencesList } = HomeController();
     const _RenderHeader = () => {
         return (
             <View style={styles.header}>
@@ -50,52 +48,53 @@ const HomeScreen = () => {
             </View>
         )
     }
-    const _renderWork = ({ item }: { item: IWorkList }) => {
-        return (
-            <View style={styles.workCard}>
-                <ImageBackground
-                    source={item.image}
-                    style={styles.backgroundImage}
-                    imageStyle={styles.backgroundImageStyle}
-                    resizeMode='cover'
-                >
-                    <Text style={styles.itemName}>{item.name}</Text>
-                </ImageBackground>
-            </View>
-        )
-    }
-    const _RenderLatestWork = () => {
+
+
+    const _RenderExperienceItem = ({ experience }: { experience: IExperience[] }) => {
         return (
             <View style={styles.LatesHeader}>
                 <Text style={styles.subHederText}>
                     My Latest Work
                 </Text>
-                <View style={styles.subHederSubtitle}>
+                <View style={styles.HeaderSubTitle}>
                     <Text style={styles.headerSubText}>
-                        Perfect solution for Digital Work.
+                        I have spent two years honking my skills. My passion for building Mob applications and user interfaces led me to improve my React-Native game,
+                        allowing me to create dynamic applications. I have also hands on experience with realm Data base, Offline support app.
                     </Text>
                 </View>
-                <FlatList
+                <View style={styles.experienceContain}>
 
-                    data={LatestWorkList}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => { onPressApps(item) }}>
-                            <_renderWork item={item} />
-                        </TouchableOpacity>
-                    )}
-                    style={styles.flatList}
-                    numColumns={2}
-                    keyExtractor={(item) => item.id}
-                />
+                    {experience.map((item: any, index: number) => (
+                        <View key={index}>
+                            <View style={styles.outerDottedLine} />
+                            <View style={[styles.circle, { backgroundColor: item.dotColor }]} />
+                            {index < experience.length - 1 && <View style={styles.verticalLine} />}
+                            <View style={styles.experienceContent}>
+                                <Text style={styles.title}>{item.jobTitle}</Text>
+                                <Text style={styles.company}>{item.company}</Text>
+                                <Text style={styles.duration}>{item.duration}</Text>
+                                <Text style={styles.description}>{item.skills}</Text>
+                            </View>
+                        </View>
+                    ))}
+                </View>
             </View>
-        )
-    }
+        );
+    };
     return (
         <ScrollView style={styles.container}>
             <_RenderHeader />
             <_RenderVector />
             <_RenderSubheader />
-            <_RenderLatestWork />
+            <View>
+                <_RenderLatestWork LatestWorkList={LatestWorkList}
+                    onPressApps={onPressApps}
+                    numColumns={2}
+                    HeaderTitle={'My Latest Work'}
+                    HeaderSubTitle={' Perfect solution for Digital Work.'}
+                />
+            </View>
+            <_RenderExperienceItem experience={ExperiencesList} />
         </ScrollView>
     )
 }
